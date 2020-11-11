@@ -1,0 +1,21 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: netflix-service-storage
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.100.55.164:3333/storage?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: qhh921114
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #避免将驼峰命名转换为下划线命名
+seata:
+  tx-service-group: SEATA_GROUP
+  registry:
+    nacos:
+      server-addr: 127.0.0.1:8848

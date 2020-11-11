@@ -1,0 +1,19 @@
+server:
+  port: 9071
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
+  endpoint:
+    health:
+      show-details: always

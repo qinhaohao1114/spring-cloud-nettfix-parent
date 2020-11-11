@@ -1,0 +1,24 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: spring-cloud-oauth-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.100.55.164:3306/auth2?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: qhh921114
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 30
+      max-wait: 50000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    prefer-ip-address: false
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@

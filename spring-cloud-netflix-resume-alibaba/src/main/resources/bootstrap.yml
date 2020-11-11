@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: netflix-service-resume
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: c52e1879-7501-4d67-ad6d-4883fcf06f54
+        group: DEFAULT_GROUP
+        file-extension: yaml
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.100.55.164:3306/lagou?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: qhh921114
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #避免将驼峰命名转换为下划线命名
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+server:
+  port: 9090

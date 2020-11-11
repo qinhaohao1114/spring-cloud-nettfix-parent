@@ -1,0 +1,10 @@
+server:
+  port: 9060
+spring:
+  application:
+    name: netflix-service-bussiness
+seata:
+  tx-service-group: SEATA_GROUP
+  registry:
+    nacos:
+      server-addr: 127.0.0.1:8848

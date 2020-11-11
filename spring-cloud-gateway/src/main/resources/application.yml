@@ -1,0 +1,41 @@
+server:
+  port: 9002
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
+spring:
+  application:
+    name: spring-cloud-gateway
+  main:
+    allow-bean-definition-overriding: false
+  cloud:
+    gateway:
+      routes:
+        - id: netflix-autodliver
+          uri: http://127.0.0.1:9070
+          predicates:
+            - Path=/autodeliver/**
+          filters:
+            - name: JWTAuthentication
+              args:
+                signKey: qhhs
+                whiteList:
+                  - 'GET /other'
+                authInfoCarryStrategy: AuthWriteToHeader
+        - id: netflix-service-resume
+          uri: http://127.0.0.1:9091
+          predicates:
+            - Path=/resume/**
+          filters:
+            - StripPrefix=1
+
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: debug
+    org.springframework.cloud.sleuth: debug

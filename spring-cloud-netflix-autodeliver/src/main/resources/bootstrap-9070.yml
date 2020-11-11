@@ -1,0 +1,31 @@
+server:
+  port: 9070
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+#hystrix:
+#  command:
+#    default:
+#      circuitBreaker:
+#        forceOpen: false
+#        errorThresholdPercentage: 50
+#        sleepWindowInMilliseconds: 3000
+#        requestVolumeThreshold: 2
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2000

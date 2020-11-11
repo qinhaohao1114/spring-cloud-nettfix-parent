@@ -1,0 +1,15 @@
+server:
+  port: 9070
+
+#hystrix:
+#  command:
+#    default:
+#      circuitBreaker:
+#        forceOpen: false
+#        errorThresholdPercentage: 50
+#        sleepWindowInMilliseconds: 3000
+#        requestVolumeThreshold: 2
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2000

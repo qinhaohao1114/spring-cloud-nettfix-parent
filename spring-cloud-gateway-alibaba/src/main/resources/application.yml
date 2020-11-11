@@ -1,0 +1,19 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: cloud-gateway-alibaba
+  cloud:
+    gateway:
+      routes:
+        - id: autodeliver-route
+          uri: http://127.0.0.1:9070
+          predicates:
+            - Path=/autodeliver/**
+          filters:
+            - name: JWTAuthentication
+              args:
+                signKey: qhhs
+                whiteList:
+                  - 'GET /other'
+                authInfoCarryStrategy: AuthWriteToHeader

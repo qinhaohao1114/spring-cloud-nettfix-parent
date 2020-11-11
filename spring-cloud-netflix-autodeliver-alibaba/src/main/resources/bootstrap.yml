@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: netflix-autodliver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8098
+        port: 8719
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/html,application/xml,application/json # 设置压缩的数据类型，此处也是默认值
+      min-request-size: 2048
+    response:
+      enabled: true
+
+logging:
+  level:
+    com.study.netflix.client.ResumeFeignClient: debug
+    org.springframework.web.servlet.DispatcherServlet: debug
+    org.springframework.cloud.sleuth: debug
